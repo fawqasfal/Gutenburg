@@ -202,10 +202,6 @@ class Analyzer:
 		end = pot_end[randrange(0,len(pot_end))]
 		return ' '.join(answer) + end
 
-
-
-
-
 try:
 	iliad = Analyzer(TEXT, CHAPTER_FINDER, TOP_500)
 
@@ -243,4 +239,3 @@ try:
 except Exception as ex:
 	pass
 	#Again, this is to prevent anyone importing analysis.py for the generally usable Analyzer class from running into problems
-	
