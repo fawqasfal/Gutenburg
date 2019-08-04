@@ -132,19 +132,23 @@ class Analyzer:
 		So, the key takes a Word and returns the result of that function. That function is implemented by reduce(),
 		which takes HashMap[Word] and sums up all of the frequency integers in that array.
 		Reverse = True because we want the largest frequency words first, not the smallest'''
-		return u_words[:20] #top 20 largest 
+		with_freq = [(word, reduce(lambda freq1, freq2 : freq1 + freq2, unique[word])) for word in u_words[:20]] 
+		#attach frequencies to the word, and get the 20 most common
+		return with_freq
 
 	def get20MostInterestingFrequentWords(self):
 		unique = self.getUniqueWords()
 		ui_words = [word for word in unique if word not in self.common]
 		ui_words.sort(key = lambda word: reduce((lambda freq1, freq2 : freq1 + freq2), unique[word]), reverse = True)
-		return ui_words[:20]
+		with_freq = [(word, reduce(lambda freq1, freq2 : freq1 + freq2, unique[word])) for word in ui_words[:20]] 
+		return with_freq
 
 	def get20LeastFrequentWords(self):
 		unique = self.getUniqueWords()
 		u_words = list(unique.keys())
 		u_words.sort(key = lambda word: reduce((lambda freq1, freq2 : freq1 + freq2), unique[word]))
-		return u_words[:20]
+		with_freq = [(word, reduce(lambda freq1, freq2 : freq1 + freq2, unique[word])) for word in u_words[:20]] 
+		return with_freq
 
 	def getFrequencyOfWord(self, word):
 		unique = self.getUniqueWords()
@@ -236,5 +240,6 @@ try:
 	print(iliad.generateSentence("From"))
 	print(iliad.generateSentence("LittleKittyKats"))
 except Exception as ex:
+	print(ex)
 	pass
 	#Again, this is to prevent anyone importing analysis.py for the generally usable Analyzer class from running into problems
