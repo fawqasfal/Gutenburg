@@ -47,11 +47,10 @@ CHAPTER_FINDER = [chapter + "\n\n" for chapter in CHAPTERS.split("\n")]
 '''
 These three variables are what's necessary to run the analyzer class on any text. 
 You need a filename that has the text of the book, a list of chapter dilineators 
-that can uniquely be foudn and indexed in the text so as to break up the book into it's chapters,
+that can uniquely be found and indexed in the text so as to break up the book into it's chapters,
 and you need some kind of iterable, preferably a set, that contains the most common words you want to ignore in generating
 the most interesting words.
 '''
-
 class Analyzer:
 	def __init__(self, filename, chapter_finder, common):
 		try:
@@ -61,8 +60,8 @@ class Analyzer:
 			self.chapter_finder = chapter_finder
 			self.common = common
 		except Exception as ex:
-			print("Cannot open file : " + filename)
-			print(ex)
+			exception_string = "Cannot open file: " + filename
+			raise Exception(exception_string)
 			self.text = ""
 
 	def print_text(self):
@@ -88,7 +87,7 @@ class Analyzer:
 		1. a 2D array that contains all the words in the text, broken up by chapter (getWordsByChapter())
 		2. a hash map that has  unique words as keys, and arrays that have those unique words' frequencies in each chapter as values
 		(the keys are case insensitive, but punctuation sensitive - `allowed' is different from `allow'd')
-		
+
 		So, for example, Map['tRoY'] = [3, 17, 15, 14, 16, 20, 12, 10, 11, 10, 6, 6, 17, 10, 13, 20, 23, 11, 3, 11, 15, 14, 1, 19]
 		Because there are 24 chapters, the array has 24 indices, 
 		and 'tRoy' (and it's case-altered variants) appears in each chapter as often as that chapter's index in the array. 
