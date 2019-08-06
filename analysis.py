@@ -232,6 +232,7 @@ try:
 	print('Which chapter the quote "%s" appears in: %d'%(printed_quote1, iliad.getChapterQuoteAppears(tested_quote1)))
 	print('Which chapter the quote "%s" appears in: %d'%(printed_quote2, iliad.getChapterQuoteAppears(tested_quote2)))
 	print("Generated sentences: ")
+	
 	print(iliad.generateSentence("The"))
 	print(iliad.generateSentence("Thou"))
 	print(iliad.generateSentence("From"))
